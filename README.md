@@ -40,7 +40,9 @@ Replace `YOUR_PROJECT_REF` and `YOUR_SUPABASE_PUBLISHABLE_KEY` in `supabase-conf
 
 5. Open the site and check the **Backend** box: it should say Supabase is connected after secrets are set and a deploy has run.
 
-Use `@supabase/supabase-js` from `website/js/supabase-client.js` (ES module + `esm.sh`) for queries. Never put the **service_role** key in the website folder.
+6. **Tic tac toe:** run `supabase/migrations/20260418210000_tic_tac_toe_games.sql` in the SQL Editor so the `ttt_games` table exists. (The connectivity probe migration is separate if you use **Check database**.)
+
+Use `@supabase/supabase-js` from `website/js/supabase-client.js` (ES module + `esm.sh`) for queries. Never put **secret** service keys in the website folder.
 
 ## Supabase VS Code extension (Cursor)
 

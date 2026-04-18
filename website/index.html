@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>For you</title>
+    <title>Tic tac toe with Supabase</title>
     <meta
       name="description"
-      content="News: public websites, and how I build now. Tap the cards."
+      content="Play tic tac toe against a perfect engine. Each move is stored in Supabase."
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,88 +21,55 @@
     <div class="bg-blobs" aria-hidden="true"></div>
 
     <header class="site-header">
-      <p class="eyebrow">A tiny site, just for you</p>
+      <p class="eyebrow">Supabase + static site</p>
     </header>
 
-    <main id="main" class="layout">
+    <main id="main" class="layout layout--wide">
       <section class="hero card-in" aria-labelledby="hero-title">
-        <h1 id="hero-title" class="hero-title">I can launch public websites now.</h1>
+        <h1 id="hero-title" class="hero-title">Tic tac toe, live in the database</h1>
         <p class="lede">
-          Real pages, real links, so anyone with the URL can open them. I made this
-          one small on purpose, but it’s the same idea as “something on the
-          actual internet.”
+          You play <strong>X</strong>. The engine plays perfect <strong>O</strong> from code in this
+          repo. Every move is written to Supabase so you can refresh or share the game link.
         </p>
       </section>
 
-      <section class="story" aria-labelledby="story-title">
-        <h2 id="story-title" class="section-title">The story, in two taps</h2>
-        <p class="section-intro">
-          Tap a card if you want the slightly longer version.
+      <section class="ttt-section card-in card-in--delay" aria-labelledby="ttt-heading">
+        <h2 id="ttt-heading" class="section-title">Board</h2>
+        <p class="ttt-lede">
+          Tap a free cell on your turn. After your move is saved, the engine replies in the same
+          round. A line marks three in a row when someone wins.
         </p>
-
-        <div class="cards">
-          <article class="story-card">
-            <button
-              type="button"
-              class="story-card__toggle"
-              aria-expanded="false"
-              aria-controls="panel-1"
-              id="btn-1"
-            >
-              <span class="story-card__label">The news</span>
-              <span class="story-card__hint" aria-hidden="true">+</span>
-            </button>
-            <div
-              class="story-card__panel"
-              id="panel-1"
-              role="region"
-              aria-labelledby="btn-1"
-              hidden
-            >
-              <p>
-                I can create and publish <strong>public</strong> sites (pages
-                that live outside my laptop, with a shareable link). That’s new
-                for me, and it’s what I wanted you to see first.
-              </p>
-            </div>
-          </article>
-
-          <article class="story-card">
-            <button
-              type="button"
-              class="story-card__toggle"
-              aria-expanded="false"
-              aria-controls="panel-2"
-              id="btn-2"
-            >
-              <span class="story-card__label">How I’m building</span>
-              <span class="story-card__hint" aria-hidden="true">+</span>
-            </button>
-            <div
-              class="story-card__panel"
-              id="panel-2"
-              role="region"
-              aria-labelledby="btn-2"
-              hidden
-            >
-              <p>
-                I work alongside AI tools now: things like <strong>Cursor</strong>
-                and <strong>Claude</strong>, almost like teammates in the editor.
-                They help me draft, explore options, and catch dumb mistakes;
-                I still decide what ships. It’s faster, and honestly more fun.
-              </p>
-            </div>
-          </article>
+        <p id="ttt-status" class="ttt-status" aria-live="polite"></p>
+        <div id="ttt-result" class="ttt-result" role="status" hidden></div>
+        <div class="ttt-toolbar">
+          <button type="button" class="btn-primary" id="ttt-new-game">New game</button>
+          <button type="button" class="btn-ghost" id="ttt-copy-link">Copy game link</button>
         </div>
-      </section>
 
-      <section class="reveal-block card-in card-in--delay" aria-labelledby="reveal-label">
-        <p id="reveal-label" class="reveal-block__prompt">One more thing:</p>
-        <button type="button" class="btn-primary" id="reveal-btn">
-          Open the note
-        </button>
-        <div class="reveal-block__message" id="reveal-message" hidden>
-          <p>Any ideas what we want to build now?</p>
+        <div class="ttt-board-shell">
+          <div
+            class="ttt-grid"
+            id="ttt-grid"
+            role="group"
+            aria-label="Tic tac toe cells, three by three"
+          >
+            <button type="button" class="ttt-cell" data-index="0" aria-label="Cell 1"></button>
+            <button type="button" class="ttt-cell" data-index="1" aria-label="Cell 2"></button>
+            <button type="button" class="ttt-cell" data-index="2" aria-label="Cell 3"></button>
+            <button type="button" class="ttt-cell" data-index="3" aria-label="Cell 4"></button>
+            <button type="button" class="ttt-cell" data-index="4" aria-label="Cell 5"></button>
+            <button type="button" class="ttt-cell" data-index="5" aria-label="Cell 6"></button>
+            <button type="button" class="ttt-cell" data-index="6" aria-label="Cell 7"></button>
+            <button type="button" class="ttt-cell" data-index="7" aria-label="Cell 8"></button>
+            <button type="button" class="ttt-cell" data-index="8" aria-label="Cell 9"></button>
+          </div>
+          <svg
+            id="ttt-win-svg"
+            class="ttt-win-svg"
+            viewBox="0 0 300 300"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          ></svg>
         </div>
       </section>
     </main>
@@ -137,5 +104,6 @@
 
     <script src="script.js" defer></script>
     <script type="module" src="js/app-supabase.js"></script>
+    <script type="module" src="js/app-ttt.js"></script>
   </body>
 </html>
