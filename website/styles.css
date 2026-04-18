@@ -662,3 +662,136 @@ body {
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
   }
 }
+
+.stats-section {
+  margin-top: 1.25rem;
+  padding: 1.5rem 1.35rem 1.35rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+}
+
+.stats-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats-section__head .section-title {
+  margin: 0;
+}
+
+.stats-status {
+  margin: 0 0 1rem;
+  min-height: 1.35em;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  margin: 0;
+  padding: 1rem 1rem 1.1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(255, 254, 251, 0.55);
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .stat-card {
+    background: rgba(31, 28, 36, 0.65);
+  }
+}
+
+.stat-card__label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--plum);
+}
+
+.stat-card__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text);
+}
+
+.stat-card:nth-child(1) .stat-card__value {
+  color: var(--accent);
+}
+
+.stat-card:nth-child(2) .stat-card__value {
+  color: var(--plum);
+}
+
+.stat-card:nth-child(3) .stat-card__value {
+  color: var(--text-soft);
+}
+
+.stats-subgrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.75rem;
+  margin-bottom: 0.85rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat-inline {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.stat-inline__label {
+  color: var(--text-soft);
+}
+
+.stat-inline__value {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.stats-foot {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+.stats-foot code {
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--accent-faint);
+}
+
+.btn-ghost--compact {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+}

@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (wl && !Array.isArray(wl)) wl = null;
     paintBoard(row.board, row.status, wl);
+    window.dispatchEvent(new CustomEvent("ttt-stats-refresh"));
   }
 
   async function loadGame(id) {

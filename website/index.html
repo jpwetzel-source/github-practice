@@ -72,6 +72,43 @@
           ></svg>
         </div>
       </section>
+
+      <section class="stats-section card-in" aria-labelledby="stats-heading">
+        <div class="stats-section__head">
+          <h2 id="stats-heading" class="section-title">Outcome dashboard</h2>
+          <button type="button" class="btn-ghost btn-ghost--compact" id="stats-refresh">
+            Refresh
+          </button>
+        </div>
+        <p id="stats-status" class="stats-status" aria-live="polite"></p>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <h3 class="stat-card__label">You won</h3>
+            <p class="stat-card__value" id="stat-user-won">–</p>
+          </article>
+          <article class="stat-card">
+            <h3 class="stat-card__label">Engine won</h3>
+            <p class="stat-card__value" id="stat-engine-won">–</p>
+          </article>
+          <article class="stat-card">
+            <h3 class="stat-card__label">Draw</h3>
+            <p class="stat-card__value" id="stat-draw">–</p>
+          </article>
+        </div>
+        <div class="stats-subgrid">
+          <p class="stat-inline">
+            <span class="stat-inline__label">Still playing</span>
+            <span class="stat-inline__value" id="stat-playing">–</span>
+          </p>
+          <p class="stat-inline">
+            <span class="stat-inline__label">All games stored</span>
+            <span class="stat-inline__value" id="stat-total">–</span>
+          </p>
+        </div>
+        <p class="stats-foot">
+          Counts come from your <code>ttt_games</code> table (every row in this Supabase project).
+        </p>
+      </section>
     </main>
 
     <aside class="supabase-panel card-in" aria-label="Backend status">
@@ -104,6 +141,7 @@
 
     <script src="script.js" defer></script>
     <script type="module" src="js/app-supabase.js"></script>
+    <script type="module" src="js/app-dashboard.js"></script>
     <script type="module" src="js/app-ttt.js"></script>
   </body>
 </html>
