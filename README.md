@@ -1,14 +1,33 @@
-# Static site starter
+# Cursor Local
 
-Minimal HTML + CSS site, ready to host on **GitHub Pages** or any static host.
+This folder is a small **Cursor** workspace: **Cursor rules** live in `.cursor/rules/`, and the **public static site** lives in `website/`.
 
-## Create the GitHub repository
+## Site (in `website/`)
+
+The HTML, CSS, and JS for the GitHub Pages site are in the `website/` directory.
+
+### Local preview
+
+```bash
+cd website
+python3 -m http.server 8080
+```
+
+Open `http://localhost:8080`.
+
+### GitHub Pages
+
+This repo deploys the `website/` folder using **GitHub Actions** (see `.github/workflows/deploy-pages.yml`). In the repo on GitHub: **Settings → Pages → Build and deployment** should use **GitHub Actions** as the source.
+
+After pushes to `main`, the workflow uploads that folder as the site.
+
+## Create the GitHub repository (reference)
 
 ### Option A — GitHub website
 
-1. On GitHub: **New repository** (any name, e.g. `my-static-site`).
-2. Leave it **empty** (no README, no .gitignore template) so your first push is clean.
-3. Copy the repo URL, then in this folder run:
+1. On GitHub: **New repository** (any name).
+2. Leave it **empty** (no README template) if you want a clean first push.
+3. Copy the repo URL, then from the repo root:
 
 ```bash
 git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
@@ -17,32 +36,9 @@ git push -u origin main
 
 ### Option B — GitHub CLI
 
-If you use [GitHub CLI](https://cli.github.com/) (`gh`), log in once:
-
 ```bash
 gh auth login
-```
-
-Then create the repo from this folder (pick your name):
-
-```bash
 gh repo create YOUR_REPO_NAME --public --source=. --remote=origin --push
 ```
 
-## Enable GitHub Pages
-
-1. Repo **Settings** → **Pages**.
-2. **Build and deployment** → Source: **Deploy from a branch**.
-3. Branch: **main**, folder **/ (root)** → Save.
-
-After a minute, the site is at `https://YOUR_USER.github.io/YOUR_REPO_NAME/` (unless you use a user/org site repo — see [GitHub Pages docs](https://docs.github.com/pages)).
-
-## Local preview
-
-Open `index.html` in a browser, or from this directory:
-
-```bash
-python3 -m http.server 8080
-```
-
-Then visit `http://localhost:8080`.
+See [GitHub Pages docs](https://docs.github.com/pages) for custom domains and more.
