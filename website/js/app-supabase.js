@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (ping.reason === "not_configured") {
     setStatus(
       statusEl,
-      "Supabase is not configured. Add supabase-config.js locally or GitHub Actions secrets SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY (or legacy SUPABASE_ANON_KEY), then use Check database.",
+      "Supabase is not configured. Add supabase-config.js locally or GitHub Actions secrets SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY, then use Check database.",
       "idle"
     );
     btn.disabled = true;

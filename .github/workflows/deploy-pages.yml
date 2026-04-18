@@ -27,15 +27,12 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_PUBLISHABLE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          CLIENT_KEY="${SUPABASE_PUBLISHABLE_KEY:-$SUPABASE_ANON_KEY}"
-          if [ -n "$SUPABASE_URL" ] && [ -n "$CLIENT_KEY" ]; then
-            export CLIENT_KEY
-            python3 -c "import os; u=os.environ['SUPABASE_URL']; k=os.environ['CLIENT_KEY']; open('website/supabase-config.js','w',encoding='utf-8').write('export const supabaseUrl = '+repr(u)+';\nexport const supabasePublishableKey = '+repr(k)+';\n')"
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_PUBLISHABLE_KEY" ]; then
+            python3 -c "import os; u=os.environ['SUPABASE_URL']; k=os.environ['SUPABASE_PUBLISHABLE_KEY']; open('website/supabase-config.js','w',encoding='utf-8').write('export const supabaseUrl = '+repr(u)+';\nexport const supabasePublishableKey = '+repr(k)+';\n')"
             echo "Wrote website/supabase-config.js"
           else
-            echo "No SUPABASE_URL or client key (SUPABASE_PUBLISHABLE_KEY or legacy SUPABASE_ANON_KEY): skipping config (site shows not configured)."
+            echo "No SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY secrets: skipping config (site shows not configured)."
           fi
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -1,4 +1,4 @@
--- One-row table for browser connectivity checks (anon read only via RLS).
+-- One-row table for browser connectivity checks (RLS: SELECT for Postgres role anon).
 -- Run this file once on your hosted project: Supabase Dashboard → SQL Editor → New query → paste → Run.
 
 create table if not exists public.app_connectivity_probe (

@@ -9,20 +9,13 @@ function hasPlaceholders(url, key) {
   return false;
 }
 
-function readClientKey(mod) {
-  if (mod.supabasePublishableKey != null && mod.supabasePublishableKey !== "") {
-    return mod.supabasePublishableKey;
-  }
-  if (mod.supabaseAnonKey != null && mod.supabaseAnonKey !== "") {
-    return mod.supabaseAnonKey;
-  }
-  return undefined;
-}
-
 export async function loadSupabaseConfig() {
   try {
     const mod = await import("../supabase-config.js");
-    var key = readClientKey(mod);
+    const key =
+      mod.supabasePublishableKey != null && mod.supabasePublishableKey !== ""
+        ? mod.supabasePublishableKey
+        : undefined;
     return {
       url: mod.supabaseUrl,
       key: key,
