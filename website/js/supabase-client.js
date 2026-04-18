@@ -45,3 +45,34 @@ export async function pingSupabaseAuth() {
   if (!res.ok) return { ok: false, reason: "http_" + res.status };
   return { ok: true };
 }
+
+const CONNECTIVITY_TABLE = "app_connectivity_probe";
+
+/** Reads the probe row; requires the SQL migration applied on the project. */
+export async function probeConnectivityTable() {
+  const client = await getSupabaseClient();
+  if (!client) {
+    return { ok: false, reason: "not_configured", detail: null };
+  }
+  const { data, error } = await client
+    .from(CONNECTIVITY_TABLE)
+    .select("status")
+    .eq("id", 1)
+    .maybeSingle();
+  if (error) {
+    return {
+      ok: false,
+      reason: "query_error",
+      detail: error.message || String(error),
+      code: error.code || null,
+    };
+  }
+  if (!data || data.status !== "ok") {
+    return {
+      ok: false,
+      reason: "bad_value",
+      detail: data ? JSON.stringify(data) : "no row",
+    };
+  }
+  return { ok: true, value: data.status };
+}

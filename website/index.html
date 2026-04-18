@@ -109,7 +109,26 @@
 
     <aside class="supabase-panel card-in" aria-label="Backend status">
       <p class="supabase-panel__title">Backend</p>
-      <p id="supabase-status" class="supabase-status">Checking Supabase...</p>
+      <div class="supabase-db-row">
+        <span
+          class="supabase-light"
+          id="supabase-light"
+          data-state="off"
+          role="img"
+          aria-label="Database check indicator"
+        ></span>
+        <p
+          id="supabase-status"
+          class="supabase-status"
+          data-state="idle"
+          aria-live="polite"
+        >
+          Checking Supabase…
+        </p>
+      </div>
+      <button type="button" class="btn-supabase-check" id="supabase-check-btn">
+        Check database
+      </button>
     </aside>
 
     <footer class="site-footer">

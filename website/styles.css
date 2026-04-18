@@ -308,7 +308,7 @@ body {
 }
 
 .supabase-panel__title {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.55rem;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -316,8 +316,112 @@ body {
   font-weight: 600;
 }
 
+.supabase-db-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.supabase-light {
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.32rem;
+  border-radius: 50%;
+  background: var(--text-soft);
+  opacity: 0.45;
+  box-shadow: 0 0 0 2px var(--border);
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.supabase-light[data-state="off"] {
+  background: var(--text-soft);
+  opacity: 0.35;
+}
+
+.supabase-light[data-state="pending"] {
+  background: #c9a227;
+  opacity: 1;
+  animation: supa-pulse 0.9s ease-in-out infinite;
+}
+
+.supabase-light[data-state="ok"] {
+  background: #2f8f54;
+  opacity: 1;
+  box-shadow:
+    0 0 0 2px rgba(47, 143, 84, 0.35),
+    0 0 12px rgba(47, 143, 84, 0.45);
+}
+
+.supabase-light[data-state="error"] {
+  background: var(--accent);
+  opacity: 1;
+}
+
+@keyframes supa-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .supabase-light[data-state="pending"] {
+    animation: none;
+  }
+}
+
+.btn-supabase-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn-supabase-check:hover:not(:disabled) {
+  background: var(--accent-faint);
+  border-color: rgba(107, 91, 115, 0.35);
+}
+
+.btn-supabase-check:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-supabase-check:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-supabase-check:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .supabase-status {
   margin: 0;
+  flex: 1;
+  min-width: 0;
   font-size: 0.88rem;
   color: var(--text-soft);
   line-height: 1.45;
