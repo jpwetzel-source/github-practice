@@ -75,39 +75,68 @@
 
       <section class="stats-section card-in" aria-labelledby="stats-heading">
         <div class="stats-section__head">
-          <h2 id="stats-heading" class="section-title">Outcome dashboard</h2>
-          <button type="button" class="btn-ghost btn-ghost--compact" id="stats-refresh">
-            Refresh
+          <div class="stats-section__titles">
+            <h2 id="stats-heading" class="stats-section__title">Outcome dashboard</h2>
+            <p class="stats-section__subtitle">
+              Live totals from <code>ttt_games</code> in your Supabase project.
+            </p>
+          </div>
+          <button type="button" class="btn-stats-refresh" id="stats-refresh">
+            <span class="btn-stats-refresh__label">Refresh</span>
           </button>
         </div>
         <p id="stats-status" class="stats-status" aria-live="polite"></p>
-        <div class="stats-grid">
-          <article class="stat-card">
-            <h3 class="stat-card__label">You won</h3>
-            <p class="stat-card__value" id="stat-user-won">–</p>
-          </article>
-          <article class="stat-card">
-            <h3 class="stat-card__label">Engine won</h3>
-            <p class="stat-card__value" id="stat-engine-won">–</p>
-          </article>
-          <article class="stat-card">
-            <h3 class="stat-card__label">Draw</h3>
-            <p class="stat-card__value" id="stat-draw">–</p>
-          </article>
+
+        <div class="stats-table-shell">
+          <table class="stats-table">
+            <caption class="stats-table__caption">
+              Finished and in-progress games by status
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" class="stats-table__th-outcome">Outcome</th>
+                <th scope="col" class="stats-table__th-count">Games</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="stats-table__row stats-table__row--user">
+                <th scope="row" class="stats-table__label">
+                  <span class="stats-table__swatch stats-table__swatch--user" aria-hidden="true"></span>
+                  You won
+                </th>
+                <td class="stats-table__num" id="stat-user-won">–</td>
+              </tr>
+              <tr class="stats-table__row stats-table__row--engine">
+                <th scope="row" class="stats-table__label">
+                  <span class="stats-table__swatch stats-table__swatch--engine" aria-hidden="true"></span>
+                  Engine won
+                </th>
+                <td class="stats-table__num" id="stat-engine-won">–</td>
+              </tr>
+              <tr class="stats-table__row stats-table__row--draw">
+                <th scope="row" class="stats-table__label">
+                  <span class="stats-table__swatch stats-table__swatch--draw" aria-hidden="true"></span>
+                  Draw
+                </th>
+                <td class="stats-table__num" id="stat-draw">–</td>
+              </tr>
+              <tr class="stats-table__row stats-table__row--playing stats-table__row--sep">
+                <th scope="row" class="stats-table__label">
+                  <span class="stats-table__swatch stats-table__swatch--playing" aria-hidden="true"></span>
+                  Still playing
+                </th>
+                <td class="stats-table__num stats-table__num--muted" id="stat-playing">–</td>
+              </tr>
+              <tr class="stats-table__row stats-table__row--total">
+                <th scope="row" class="stats-table__label stats-table__label--total">
+                  <span class="stats-table__swatch stats-table__swatch--total" aria-hidden="true"></span>
+                  All games stored
+                </th>
+                <td class="stats-table__num stats-table__num--total" id="stat-total">–</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="stats-subgrid">
-          <p class="stat-inline">
-            <span class="stat-inline__label">Still playing</span>
-            <span class="stat-inline__value" id="stat-playing">–</span>
-          </p>
-          <p class="stat-inline">
-            <span class="stat-inline__label">All games stored</span>
-            <span class="stat-inline__value" id="stat-total">–</span>
-          </p>
-        </div>
-        <p class="stats-foot">
-          Counts come from your <code>ttt_games</code> table (every row in this Supabase project).
-        </p>
       </section>
     </main>
 
