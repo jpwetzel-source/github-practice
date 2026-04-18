@@ -17,7 +17,13 @@ git push -u origin main
 
 ### Option B — GitHub CLI
 
-If you use [GitHub CLI](https://cli.github.com/) (`gh`) and are logged in:
+If you use [GitHub CLI](https://cli.github.com/) (`gh`), log in once:
+
+```bash
+gh auth login
+```
+
+Then create the repo from this folder (pick your name):
 
 ```bash
 gh repo create YOUR_REPO_NAME --public --source=. --remote=origin --push
