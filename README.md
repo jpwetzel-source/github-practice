@@ -1,6 +1,8 @@
-# Cursor Local
+# github-practice
 
-This folder is a small **Cursor** workspace: **Cursor rules** live in `.cursor/rules/`, and the **public static site** lives in `website/`.
+This folder is one Git repository inside the local **`all-devs`** container (sibling to `_shell-*` templates). It is **not** the same as opening `all-devs` itself in the editor.
+
+**Cursor rules** live in `.cursor/rules/`. The **public static site** lives in `website/`.
 
 ## Site (in `website/`)
 
