@@ -1,0 +1,33 @@
+---
+description: Do not use typographic long dashes in public-facing web content or HTML
+globs: "**/*.{html,htm,tsx,jsx,vue,svelte,mdx}"
+alwaysApply: false
+---
+
+# Public copy: no long dashes
+
+When editing or generating content for websites, HTML, components that render to the page, or anything user-visible:
+
+- Do **not** use the em dash (U+2014) or en dash (U+2013) in copy, headings, buttons, labels, placeholders, `title` / `alt` text, meta descriptions, or visible strings in code.
+- Use plain ASCII instead: hyphen-minus `-`, commas, parentheses, colons, or rephrase the sentence.
+
+Examples:
+
+```html
+<!-- BAD -->
+<p>We ship fast—without cutting corners.</p>
+
+<!-- GOOD -->
+<p>We ship fast, without cutting corners.</p>
+<p>We ship fast (without cutting corners).</p>
+```
+
+```html
+<!-- BAD: en dash in ranges in visible text can be written for humans as "to" or hyphen -->
+<p>Berlin–Munich in 4 hours</p>
+
+<!-- GOOD -->
+<p>Berlin to Munich in 4 hours</p>
+```
+
+This does not forbid minus signs in math or code logic; it targets **typographic** dashes in **public-facing text**.
