@@ -5,16 +5,27 @@ let cachedClient = null;
 function hasPlaceholders(url, key) {
   if (!url || !key) return true;
   if (!url.startsWith("https://") || !url.includes(".supabase.co")) return true;
-  if (key.includes("YOUR_") || key.length < 20) return true;
+  if (key.includes("YOUR_") || key.length < 16) return true;
   return false;
+}
+
+function readClientKey(mod) {
+  if (mod.supabasePublishableKey != null && mod.supabasePublishableKey !== "") {
+    return mod.supabasePublishableKey;
+  }
+  if (mod.supabaseAnonKey != null && mod.supabaseAnonKey !== "") {
+    return mod.supabaseAnonKey;
+  }
+  return undefined;
 }
 
 export async function loadSupabaseConfig() {
   try {
     const mod = await import("../supabase-config.js");
+    var key = readClientKey(mod);
     return {
       url: mod.supabaseUrl,
-      key: mod.supabaseAnonKey,
+      key: key,
     };
   } catch {
     return null;

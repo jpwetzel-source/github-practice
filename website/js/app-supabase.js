@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (ping.reason === "not_configured") {
     setStatus(
       statusEl,
-      "Supabase is not configured. Add supabase-config.js locally or GitHub Actions secrets SUPABASE_URL and SUPABASE_ANON_KEY, then use Check database.",
+      "Supabase is not configured. Add supabase-config.js locally or GitHub Actions secrets SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY (or legacy SUPABASE_ANON_KEY), then use Check database.",
       "idle"
     );
     btn.disabled = true;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         : ping.reason || "unknown";
     setStatus(
       statusEl,
-      "Could not reach Supabase (HTTP " + detail + "). Check URL and anon key, then try again.",
+      "Could not reach Supabase (HTTP " + detail + "). Check URL and publishable API key, then try again.",
       "error"
     );
     btn.disabled = true;
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (result.reason === "not_configured") {
       setStatus(
         statusEl,
-        "Not configured. Add secrets or supabase-config.js with URL and anon key.",
+        "Not configured. Add secrets or supabase-config.js with URL and publishable key.",
         "error"
       );
       return;

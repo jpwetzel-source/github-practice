@@ -26,7 +26,7 @@ After pushes to `main`, the workflow uploads that folder as the site.
 ## Supabase (backend)
 
 1. Create a free project at [https://supabase.com](https://supabase.com) (new organization is fine).
-2. In the dashboard: **Project Settings → API**. Copy **Project URL** and the **anon public** key (not the `service_role` key).
+2. In the dashboard: **Project Settings → API keys**. Copy **Project URL** and the **publishable** key (`sb_publishable_...`, safe for browsers). Do not use **secret** keys in the website folder (they bypass RLS and must stay server-side only).
 3. **Local preview:** from `website/`, copy the example config and edit:
 
 ```bash
@@ -34,9 +34,9 @@ cd website
 cp supabase-config.example.js supabase-config.js
 ```
 
-Replace `YOUR_PROJECT_REF` and `YOUR_SUPABASE_ANON_PUBLIC_KEY` in `supabase-config.js`. That file stays on your machine (it is gitignored).
+Replace `YOUR_PROJECT_REF` and `YOUR_SUPABASE_PUBLISHABLE_KEY` in `supabase-config.js`. That file stays on your machine (it is gitignored). The code still accepts the legacy **anon** JWT export name `supabaseAnonKey` if you have an older local file.
 
-4. **GitHub Pages:** add two [repository secrets](https://docs.github.com/actions/security-guides/using-secrets-in-github-actions) named `SUPABASE_URL` and `SUPABASE_ANON_KEY` with the same values. The deploy workflow writes `supabase-config.js` during the job so the live site can connect. The anon key is meant for browsers; protect data with [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security) on every table.
+4. **GitHub Pages:** add [repository secrets](https://docs.github.com/actions/security-guides/using-secrets-in-github-actions) `SUPABASE_URL` and **`SUPABASE_PUBLISHABLE_KEY`** with the same values. Until you rotate, the workflow also accepts the legacy secret name **`SUPABASE_ANON_KEY`**. The deploy job writes `supabase-config.js` with `supabasePublishableKey`. Protect data with [Row Level Security](https://supabase.com/docs/guides/auth/row-level-security) on every table; the publishable key is public to anyone who loads your site.
 
 5. Open the site and check the **Backend** box: it should say Supabase is connected after secrets are set and a deploy has run.
 
